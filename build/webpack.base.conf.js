@@ -9,7 +9,8 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: ['./node_modules/es6-promise/dist/es6-promise.auto.js','./src/main.js']
+  },
   },
   output: {
     path: config.build.assetsRoot,
@@ -43,7 +44,10 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        use: [
+          'unicode-loader',
+          'babel-loader'
+        ],
         include: [resolve('src'), resolve('test')]
       },
       {

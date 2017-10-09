@@ -22,6 +22,12 @@ module.exports = {
       }
     }
   },
+  'globals': {
+    '_': true,
+    'Vue': true,
+    'jQuery': true,
+    '$': true,
+  },
   // add your custom rules here
   'rules': {
     // don't require .vue extension when importing
