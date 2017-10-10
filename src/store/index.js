@@ -1,20 +1,18 @@
-// import Vue from 'vue';
-// import Vuex from 'vuex';
-// import actions from './actions';
-// import mutations from './mutations';
-// import getters from './getters';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import popupLoading from './modules/popup-loading';
+import popupModal from './modules/popup-modal';
 
-// Vue.use(Vuex);
+Vue.use(Vuex);
 
-// export default new Vuex.Store({
-//   state: {
-//     dialogApply: false,
-//     dialogFlag: false,
-//     dialogTip: false,
-//     ruleArray: [], // 违规条例
-//     uid: null,
-//   },
-//   actions,
-//   mutations,
-//   getters,
-// });
+export default new Vuex.Store({
+  modules: {
+    popup: {
+      namespaced: true,
+      modules: {
+        loading: popupLoading,
+        modal: popupModal,
+      },
+    },
+  },
+});

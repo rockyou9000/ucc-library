@@ -9,8 +9,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: ['./node_modules/es6-promise/dist/es6-promise.auto.js','./src/main.js']
-  },
+    app: './src/main.js'
   },
   output: {
     path: config.build.assetsRoot,

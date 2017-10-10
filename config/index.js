@@ -9,6 +9,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     productionSourceMap: true,
+    httpUrl: 'https://api.github.com',
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
@@ -24,9 +25,12 @@ module.exports = {
   dev: {
     env: require('./dev.env'),
     port: 3888,
+    autoOpenBrowser: true,
+    openBrowserUriHost: 'http://localhost:',
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {},
+    httpUrl: 'https://api.github.com',
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)
