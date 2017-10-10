@@ -13,7 +13,6 @@ export default {
     this.onClick = (event) => {
       if (this.el.contains(event.target)) return false;
       if (this.expression) this.vm[this.expression]();
-      return '';
     };
     setTimeout(() => {
       document.addEventListener('click', this.onClick);

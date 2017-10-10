@@ -34,7 +34,9 @@
 <script>
 import { mapActions } from 'vuex';
 import modal from '@/components/popup/modal';
+import api from '@/store/api';
 
+const search = api.search;
 export default {
   name: 'test',
   components: {
@@ -53,10 +55,10 @@ export default {
       showModal: 'popup/modal/showModal',
     }),
     searchGithub() {
-      this.$http.get('/search/repositories', {
-        q: 'vscode',
-        sort: 'stars',
-        order: 'desc',
+      this.$http.get(search.url, {
+        q: search.params.q,
+        sort: search.params.sort,
+        order: search.params.order,
       })
       .then((response) => {
         console.log(response);

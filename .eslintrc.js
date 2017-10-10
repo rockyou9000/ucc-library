@@ -45,5 +45,6 @@ module.exports = {
     'no-param-reassign': 0,
     'prefer-const': 0,
     'no-shadow': 0,
+    'consistent-return': 0,
   }
 }
