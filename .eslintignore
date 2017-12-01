@@ -1,4 +1,4 @@
-build/*.js
-config/*.js
-src/utils/*.js
-src/api/*.js
+/build/
+/config/
+/dist/
+/*.js

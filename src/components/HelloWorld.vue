@@ -1,7 +1,6 @@
 <template>
-  <div class="index">
+  <div class="hello">
     <h1>{{ msg }}</h1>
-    <router-link to="/test">前往test页面（测试路由）</router-link>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -23,18 +22,13 @@
 
 <script>
 export default {
-  name: 'index',
-  data() {
+  name: 'HelloWorld',
+  data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      testimgsrc: '',
-    };
-  },
-  mounted() {
-  },
-  methods: {
-  },
-};
+      msg: 'Welcome to Your Vue.js App'
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -42,17 +36,14 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
-
 ul {
   list-style-type: none;
   padding: 0;
 }
-
 li {
   display: inline-block;
   margin: 0 10px;
 }
-
 a {
   color: #42b983;
 }
