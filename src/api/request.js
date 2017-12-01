@@ -1,11 +1,10 @@
 import store from '@/store'
 import axios from 'axios'
-import qs from 'qs' // axios发送的数据不是json格式，若需要json格式，添加此库
+import qs from 'qs'
 
-import config from '../../config'
-
-// Add a request interceptor
+// axios 全局拦截器
 axios.interceptors.request.use(config => {
+
   // Do something before request is sent
   // config.withCredentials = true  // 需要跨域打开此配置
   // post提交 data存在 并且 data不是FormData对象时对数据进行json化处理
@@ -13,7 +12,10 @@ axios.interceptors.request.use(config => {
     config.data = qs.stringify(config.data)
     config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
   }
+
+  // 请求最大等待时间
   config.timeout = 5000,
+
   // 开启loading动画
   store.dispatch('popup/loading/showLoading')
   return config
@@ -33,18 +35,6 @@ axios.interceptors.response.use(response => {
   return Promise.reject(error)
 })
 
-// axios.defaults.baseURL = (process.env.NODE_ENV !== 'production' ? config.dev.httpUrl : config.build.httpUrl)
-// export default axios
-const baseURL = (process.env.NODE_ENV !== 'production' ? config.dev.httpUrl : config.build.httpUrl)
-
-function format(data) {
-  let str = ''
-  for (var p in data) {
-      str += encodeURIComponent(p) + '=' + encodeURIComponent(data[p]) + '&'
-  }
-  str = str.slice(0, -1);
-  return str
-}
 
 export default {
   get (url, params) {
