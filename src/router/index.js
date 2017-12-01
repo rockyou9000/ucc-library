@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import HelloWorld from '@/view/HelloWorld'
 import TestApi from '@/view/TestApi'
 
 Vue.use(Router)
