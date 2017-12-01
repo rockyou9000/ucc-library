@@ -1,32 +1,9 @@
 {
   "presets": [
     ["env", {
-      "modules": false,
-      "targets": {
-        "browsers": [
-          "> 0.01%",
-          "not ie <= 8",
-          "Firefox >= 4",
-          "Chrome >= 20",
-          "Android >= 4",
-          "iOS >= 6"
-        ]
-      }
+      "modules": false
     }],
     "stage-2"
   ],
-  "plugins": ["transform-runtime",
-    ["component",
-      [{
-        "libraryName": "element-ui",
-        "styleLibraryName": "theme-default"
-      }]
-    ]
-  ],
-  "env": {
-    "test": {
-      "presets": ["env", "stage-2"],
-      "plugins": ["istanbul"]
-    }
-  }
+  "plugins": ["transform-runtime"]
 }
