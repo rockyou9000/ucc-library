@@ -1,7 +1,7 @@
 {
   "name": "ucc",
-  "version": "1.0.0",
-  "description": "ucc-library 图书馆管理平台",
+  "version": "2.1.0",
+  "description": "UCC/Spring-library 图书馆管理平台",
   "author": "yepeng@gmail.com",
   "private": true,
   "scripts": {

@@ -1,4 +1,4 @@
-# UCC-Library 图书查询平台
+# UCC/Spring Library
 
 
 ## 技术栈
@@ -19,6 +19,13 @@
 - 无分号
 - 启用EsLint代码风格检查(standard)
 - 使用 '===' 和 '!==' 而不是 '==' 和 '!='
+
+
+## 开发数据Mock
+>1. 通过npm run server 通过本地服务接口返回假数据
+>2. 通过easy-mock 请求真实接口返回假数据 (推荐)
+>  接口地址:  https://easy-mock.com/mock/5a2278fd99343b5fc80759d6/ucc/library/book/query
+>  需替换域名最后部分即可
 
 
 ## 构建使用
