@@ -25,10 +25,10 @@ module.exports = {
     alias: {
       '@': resolve('src'),
       'components': resolve('src/components'),
-      'global': resolve('src/global'),
+      'base': resolve('src/base'),
       'fetch': resolve('src/fetch'),
       'view': resolve('src/view'),
-      'util': resolve('src/util'),
+      'utils': resolve('src/utils'),
       'assets': resolve('src/assets')
     }
   },

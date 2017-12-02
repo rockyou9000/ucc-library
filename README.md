@@ -4,17 +4,20 @@
 ## 技术栈
 
 * ES2015+
+* Typescript
 * Vue-cli
 * Vue2.0
 * Vue-router
 * element-ui
 * axios
+* pug
+* stylus
 
 ## 语法规则
 
 - tab缩进2, 空格编码字符
 - 无分号
-- 启用esLint代码风格检查(standard)
+- 启用EsLint代码风格检查(standard)
 - 使用 '===' 和 '!==' 而不是 '==' 和 '!='
 
 
@@ -44,10 +47,10 @@ npm run build
 npm run lint
 ```
 
-启用开发mock服务
+启用后端server服务
 
 ```
-npm run mock
+npm run server
 ```
 
 ## 目录结构
@@ -66,15 +69,17 @@ npm run mock
 │   │   ├── api.js
 │   │   ├── config.js
 │   │   └── fetch.js
-│   ├── global  基础组件
-│   ├── util    工具集
+│   ├── base  基础组件
+│   ├── utils    工具集
 │   ├── router  路由文件
 │   │── view    页面
-│   ├── main.js  编译入口
+│   ├── main.ts  编译入口
 ├── index.html  模板HTML
+├── mockServer.js  mock服务
 ├── .babelrc  babel转译配置
 ├── .editorconfig   编辑器配置
 ├── .eslintignore   eslint忽略
 ├── .eslintrc.js    eslint配置
 ├── .postcssrc.js   postcss配置
+├── .tsconfig.json   typescript配置
 ```
