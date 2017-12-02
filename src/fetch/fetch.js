@@ -4,20 +4,21 @@ import originJsonp from 'jsonp'
 
 import { baseURL, jpOption } from './config'
 
+// axios 全局配置
 axios.defaults.timeout = 5000
 
-// Add a request interceptor
+// axios 全局拦截器
 axios.interceptors.request.use(
   config => {
-    // post提交 data存在 并且 data不是FormData对象时对数据进行json化处理
+    // post提交方式采用urlencode编码
     if (config.method === 'post' && config.data && config.data.constructor !== FormData) {
-      config.data = qs.stringify(config.data)
+      // 设置body数据编码方式为urlencode
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+      config.data = qs.stringify(config.data)
     }
     return config
   },
   function (error) {
-    // Do something with request error
     return Promise.reject(error)
   }
 )

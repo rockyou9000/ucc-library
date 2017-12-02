@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {biliNav, getList, getList2} from '@/fetch/api'
+import {biliNav, getList, getList2} from 'fetch/api'
 import EleBtn from '@/components/button'
 
 export default {
