@@ -1,52 +1,80 @@
-# ucc-library
+# UCC-Library 图书查询平台
 
-> library project
-> ucc 图书馆查询
 
-## Build Setup
+## 技术栈
 
-``` bash
-# install dependencies
+* ES2015+
+* Vue-cli
+* Vue2.0
+* Vue-router
+* element-ui
+* axios
+
+## 语法规则
+
+- tab缩进2, 空格编码字符
+- 无分号
+- 启用esLint代码风格检查(standard)
+- 使用 '===' 和 '!==' 而不是 '==' 和 '!='
+
+
+## 构建使用
+
+安装依赖
+
+```
 npm install
+```
 
-# serve with hot reload at localhost:8080
+启动开发服务器,监听localhost:8080端口
+
+```
 npm run dev
+```
 
-# build for production with minification
+打包编译生产版本
+
+```
 npm run build
+```
 
-# build for production and view the bundle analyzer report
-npm run build --report
+代码es-lint语法检查
 
-# lint for *.vue & *.js
+```
 npm run lint
+```
 
-# serve for mock Data
+启用开发mock服务
+
+```
 npm run mock
-
 ```
 
 ## 目录结构
 
-``` txt
-
-|-- build 构建配置文件
-|-- config webpack配置
-|-- dist 编译后文件
-|-- mock mock服务配置
-|-- src 开发文件目录
-    |-- assets 静态资源
-    |-- components 组件
-    |-- pages 页面
-    |-- utils 工具函数
-        request.js 通讯库封装
-    |-- store vuex 配置
-    |-- router router 配置
-    |-- filters 过滤器
-    |-- directive 自定义指令
-
-    App.vue 入口
-    main.js 构建入口
-|-- test 测试目录
-|-- static 静态文件
+``` bash
+├── build  构建目录
+├── config  脚手架配置
+├── src  源代码
+│   ├── App.vue  根组件
+│   ├── assets   静态资源
+│   │   ├── css
+│   │   ├── image
+│   │   └── js
+│   ├── components  业务组件
+│   ├── fetch  api封装
+│   │   ├── api.js
+│   │   ├── config.js
+│   │   └── fetch.js
+│   ├── global  基础组件
+│   ├── util    工具集
+│   ├── router  路由文件
+│   │── view    页面
+│   ├── main.js  编译入口
+├── index.html  模板HTML
+├── .babelrc  babel转译配置
+├── .editorconfig   编辑器配置
+├── .eslintignore   eslint忽略
+├── .eslintrc.js    eslint配置
+├── .postcssrc.js   postcss配置
 ```
