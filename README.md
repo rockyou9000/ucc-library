@@ -4,13 +4,10 @@
 ## 技术栈
 
 * ES2015+
-* Typescript
-* Vue-cli
 * Vue2.0
 * Vue-router
 * element-ui
 * axios
-* pug
 * stylus
 
 ## 语法规则
@@ -23,8 +20,8 @@
 
 ## 开发数据Mock
 >1. 通过npm run server 通过本地服务接口返回假数据
->2. 通过easy-mock 请求真实接口返回假数据 (推荐)
->  接口地址:  https://easy-mock.com/mock/5a2278fd99343b5fc80759d6/ucc/library/book/query
+>2. 通过easy-mock 请求真实接口返回假数据 (推荐)<br>
+>  接口地址:  https://easy-mock.com/mock/5a2278fd99343b5fc80759d6/ucc/library/book/query<br>
 >  需替换域名最后部分即可
 
 
@@ -80,7 +77,7 @@ npm run server
 │   ├── utils    工具集
 │   ├── router  路由文件
 │   │── view    页面
-│   ├── main.ts  编译入口
+│   ├── main.js  编译入口
 ├── index.html  模板HTML
 ├── mockServer.js  mock服务
 ├── .babelrc  babel转译配置

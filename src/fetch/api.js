@@ -1,5 +1,29 @@
 import fetch from './fetch'
 
+export const queryBookList = (pageNum, type, content) => {
+  let data = {
+    pageSize: 20,
+    pageNum
+  }
+  switch (type) {
+    case 'name' : data.name = content
+      break
+    case 'author' : data.author = content
+      break
+    case 'publisher' : data.author = content
+      break
+    case 'categories' : data.categories = content
+      break
+    case 'locations' : data.locations = content
+      break
+    default : data.name = content
+  }
+  return fetch.get(
+    '/book/query',
+    data
+  )
+}
+
 /**
  * 测试接口 jsonp
  */
