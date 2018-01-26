@@ -8,6 +8,8 @@ import NewBook from 'view/NewBook'
 import AdminLogin from 'view/AdminLogin'
 import AdminIndex from 'view/AdminIndex'
 
+import BookDetail from 'components/BookDetail'
+
 Vue.use(Router)
 
 export default new Router({
@@ -36,7 +38,13 @@ export default new Router({
     {
       path: '/admin',
       name: 'admin',
-      component: AdminIndex
+      component: AdminIndex,
+      children: [
+        {
+          path: 'add',
+          component: BookDetail
+        }
+      ]
     },
     {path: '*', redirect: '/'}
   ]
