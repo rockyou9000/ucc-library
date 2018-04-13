@@ -1,13 +1,16 @@
 import axios from 'axios'
 import qs from 'qs'
 import originJsonp from 'jsonp'
+import { Loading } from 'element-ui'
 
 import { baseURL, jpOption } from './config'
 
 // axios 全局配置
 axios.defaults.timeout = 5000
 
-// axios 全局拦截器
+let loadingInstance = ''
+
+// axios 全局请求拦截器
 axios.interceptors.request.use(
   config => {
     // post提交方式采用urlencode编码
@@ -16,12 +19,21 @@ axios.interceptors.request.use(
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
       config.data = qs.stringify(config.data)
     }
+    loadingInstance = Loading.service({ fullscreen: true, background: 'rgba(0, 0, 0, 0.2)' })
     return config
   },
   function (error) {
     return Promise.reject(error)
   }
 )
+
+// axios 全局相应拦截器
+axios.interceptors.response.use(config => {
+  loadingInstance.close()
+  return config
+}, function (error) {
+  return Promise.reject(error)
+})
 
 export default {
 
@@ -49,7 +61,7 @@ export default {
       method: 'post',
       url: baseURL + url,
       data: qs.stringify(data)
-      // withCredentials: true,
+      // withCredentials: true, // 跨域携带cookie
     })
   },
 
@@ -63,7 +75,7 @@ export default {
       method: 'post',
       url: baseURL + url,
       data: formdata
-      // withCredentials: true,
+      // withCredentials: true, // 跨域携带cookie
     })
   },
 
@@ -97,6 +109,7 @@ export default {
 }
 
 /**
+ * 工具函数
  * 对象转为url参数
  * @param {*} data
  */

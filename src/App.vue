@@ -16,4 +16,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.el-notification{
+  width: 260px !important;
+}
 </style>

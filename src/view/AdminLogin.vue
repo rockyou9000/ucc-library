@@ -17,17 +17,12 @@
 <script type="text/babel">
 import md5 from 'md5'
 import { cookie } from '../utils/util'
-import account from '../utils/account.json'
+import password from '../utils/password.json'
 import CommonHeader from 'components/CommonHeader'
 export default {
   name: 'AdminLogin',
   components: {
     CommonHeader
-  },
-  created () {
-    console.log('==============uccadmin======================')
-    console.log(account)
-    console.log('=============yongquanadmin=======================')
   },
   data () {
     return {
@@ -37,16 +32,15 @@ export default {
   },
   methods: {
     goLogin () {
-      for (let i in account) {
+      for (let i in password) {
         if (i === this.accountInput) {
-          if (account[i] === md5(this.password)) {
+          if (password[i] === md5(this.password)) {
             cookie.set('library_admin', i, 1)
-            cookie.set('library_flag', account.cookieFlag, 1)
+            cookie.set('library_flag', password.cookieFlag, 1)
             this.$router.push({path: '/admin'})
           }
         }
       }
-      console.log(md5(this.password))
     }
   }
 }

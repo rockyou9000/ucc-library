@@ -13,17 +13,17 @@
 </template>
 
 <script type="text/babel">
-// import { cookie } from '../utils/util'
-// import account from '../utils/account.json'
+import { cookie } from '../utils/util'
+import password from '../utils/password.json'
 export default {
   name: 'AdminIndex',
-  // created () {
-  //   let ck = cookie.get('library_admin')
-  //   let cf = cookie.get('library_flag')
-  //   if (!ck || cf !== account.cookieFlag) { // 无权限跳转主页
-  //     this.$router.push({path: '/'})
-  //   }
-  // },
+  created () {
+    const ck = cookie.get('library_admin')
+    const cf = cookie.get('library_flag')
+    if (!ck || cf !== password.cookieFlag) { // 无权限跳转主页
+      this.$router.push({path: '/'})
+    }
+  },
   data () {
     return {
       index: ''
@@ -31,7 +31,6 @@ export default {
   },
   methods: {
     handleSelect (e) {
-      console.log(e)
       this.$router.push({path: `/admin/${e}`})
     }
   }
@@ -45,6 +44,8 @@ export default {
     right: 0;
     bottom: 0;
     left: 0;
-    background: #ccc;
+  }
+  .main-content{
+    min-height: 300px;
   }
 </style>

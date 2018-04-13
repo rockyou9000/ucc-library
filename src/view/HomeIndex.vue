@@ -56,7 +56,11 @@ export default {
   },
   methods: {
     handleSearch () {
-      this.$router.push({path: `/result/${this.value}/${this.input}`})
+      if (this.input.trim() === '') {
+        this.$router.push({path: '/result'})
+      } else {
+        this.$router.push({path: `/result/${this.value}/${this.input}`})
+      }
     }
   }
 }

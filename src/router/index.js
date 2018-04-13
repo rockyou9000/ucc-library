@@ -21,6 +21,11 @@ export default new Router({
       component: HomeIndex
     },
     {
+      path: '/result',
+      name: 'resultAll',
+      component: SearchResult
+    },
+    {
       path: '/result/:type/:info',
       name: 'result',
       component: SearchResult
@@ -40,6 +45,10 @@ export default new Router({
       name: 'admin',
       component: AdminIndex,
       children: [
+        {
+          path: 'dashboard',
+          component: SearchResult
+        },
         {
           path: 'add',
           component: BookDetail

@@ -1,4 +1,5 @@
 import fetch from './fetch'
+import { Notification, Loading } from 'element-ui'
 
 export const queryBookList = (pageNum, type, content) => {
   let data = {
@@ -10,17 +11,37 @@ export const queryBookList = (pageNum, type, content) => {
       break
     case 'author' : data.author = content
       break
-    case 'publisher' : data.author = content
+    case 'publisher' : data.publisher = content
       break
-    case 'categories' : data.categories = content
+    case 'categories' : data.categories = content // 暂不支持
       break
-    case 'locations' : data.locations = content
+    case 'locations' : data.locations = content // 暂不支持
       break
-    default : data.name = content
+    default : ;
   }
-  return fetch.get(
+  return fetch.post(
     '/book/query',
     data
+  ).catch(() => {
+    Loading.service().close()
+    Notification({
+      type: 'error',
+      title: '数据加载失败!',
+      message: '请刷新重试',
+      duration: 0,
+      offset: 50
+    })
+  })
+}
+
+/**
+ * 删除一本书
+ * @param {String} id   唯一id
+ */
+export const removeOneBook = ({id}) => {
+  return fetch.post(
+    '/book/delete',
+    {id}
   )
 }
 
