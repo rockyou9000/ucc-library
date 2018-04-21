@@ -32,24 +32,22 @@ export default {
   },
   methods: {
     goLogin () {
+      let flag = false
       for (let i in password) {
         if (i === this.accountInput) {
           if (password[i] === md5(this.password)) {
+            flag = true
             cookie.set('library_admin', i, 1)
             cookie.set('library_flag', password.cookieFlag, 1)
             this.$router.push('/admin/index')
-          } else {
-            this.$message({
-              type: 'error',
-              message: '用户名或密码错误!'
-            })
           }
-        } else {
-          this.$message({
-            type: 'error',
-            message: '用户名或密码错误!'
-          })
         }
+      }
+      if (!flag) {
+        this.$message({
+          type: 'error',
+          message: '用户名或密码错误!'
+        })
       }
     }
   }
