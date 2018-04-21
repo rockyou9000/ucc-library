@@ -37,8 +37,18 @@ export default {
           if (password[i] === md5(this.password)) {
             cookie.set('library_admin', i, 1)
             cookie.set('library_flag', password.cookieFlag, 1)
-            // this.$router.push('/admin/index')
+            this.$router.push('/admin/index')
+          } else {
+            this.$message({
+              type: 'error',
+              message: '用户名或密码错误!'
+            })
           }
+        } else {
+          this.$message({
+            type: 'error',
+            message: '用户名或密码错误!'
+          })
         }
       }
     }
