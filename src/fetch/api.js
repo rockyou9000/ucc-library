@@ -38,10 +38,32 @@ export const queryBookList = (pageNum, type, content) => {
  * 删除一本书
  * @param {String} id   唯一id
  */
-export const removeOneBook = ({id}) => {
+export const removeOneBook = (id) => {
   return fetch.post(
     '/book/delete',
     {id}
+  )
+}
+
+/**
+ * 新增一本书
+ * @param {Object} payload  包含name author publisher等字段
+ */
+export const addOneBook = (payload) => {
+  return fetch.post(
+    '/book/add',
+    payload
+  )
+}
+
+/**
+ * 编辑一本书
+ * @param {Object} payload  包含id name author publisher等字段
+ */
+export const editOneBook = (payload) => {
+  return fetch.post(
+    '/book/update',
+    payload
   )
 }
 

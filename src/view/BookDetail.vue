@@ -1,17 +1,17 @@
 <template>
   <div class="book-detail-wrap">
     <div class="book-line">
-      <span>书名 : </span><el-input class="detail-input" v-model="name" ></el-input>
+      <span class="require">书名 : </span><el-input class="detail-input" v-model="name" ></el-input>
     </div>
     <div class="book-line">
-      <span>作者 : </span><el-input class="detail-input" v-model="author" ></el-input>
+      <span class="require">作者 : </span><el-input class="detail-input" v-model="author" ></el-input>
     </div>
     <div class="book-line">
       <span>出版社 : </span><el-input class="detail-input" v-model="publisher" ></el-input>
     </div>
     <div class="book-line">
-      <span>所属教会 : </span>
-      <el-select v-model="selChurch" >
+      <span class="require">所属教会 : </span>
+      <el-select v-model="location" >
         <el-option
           v-for="item in churchOptions"
           :key="item.value"
@@ -21,8 +21,8 @@
       </el-select>
     </div>
     <div class="book-line">
-      <span>分类 : </span>
-      <el-select v-model="selType" >
+      <span class="require">分类 : </span>
+      <el-select v-model="category1" >
         <el-option
           v-for="item in categoryOptions"
           :key="item.value"
@@ -31,11 +31,21 @@
         </el-option>
       </el-select>
     </div>
-    <el-button type="primary" @click="handleClick">{{isEdit?'确认修改':'确认新增'}}</el-button>
+    <div class="book-line">
+      <span class="require">主编号 : </span><el-input class="detail-input" v-model="firstId" ></el-input>
+    </div>
+    <div class="book-line">
+      <span class="require">单本编号 : </span><el-input class="detail-input" v-model="secondId" ></el-input>
+    </div>
+    <div class="book-line">
+      <el-button type="primary" class="confirm-btn" @click="handleClick">{{isEdit?'确认修改':'确认新增'}}</el-button>
+    </div>
   </div>
 </template>
 
 <script type="text/babel">
+import {addOneBook, editOneBook} from '../fetch/api'
+
 export default {
   name: 'BookDetail',
   data () {
@@ -45,8 +55,10 @@ export default {
       name: '',
       author: '',
       publisher: '',
-      selChurch: '',
-      selType: '',
+      location: '',
+      category1: '',
+      firstId: '',
+      secondId: '',
       churchOptions: [
         {
           value: '3',
@@ -102,11 +114,120 @@ export default {
     if (id) {
       this.isEdit = true
       this.bookId = id
+      // 获取图书详情
     }
   },
   methods: {
     handleClick () {
+      if (this.validateForm()) {
+        const payload = {
+          name: this.name.trim(),
+          author: this.author.trim(),
+          category1: this.category1.trim(),
+          location: this.location.trim(),
+          firstId: this.firstId.trim(),
+          secondId: this.secondId.trim()
+        }
+        if (this.publisher) {
+          payload.publisher = this.publisher.trim()
+        }
 
+        this.$confirm('确认图书信息正确么? ', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          if (this.isEdit) { // 编辑图书
+            payload.id = this.bookId.trim()
+            editOneBook(payload) // ajax
+            .then(res => {
+              if (res && res.data) {
+                if (res.data.respCode === '000') {
+                  // 编辑成功
+                  this.$message({
+                    type: 'success',
+                    message: '编辑成功!'
+                  })
+                  this.$router.push('/admin/dashboard')
+                } else if (res.data.respCode === '001') {
+                  this.$message({
+                    type: 'error',
+                    message: '未找到相关记录'
+                  })
+                } else if (res.data.respCode === '999') {
+                  this.$message({
+                    type: 'error',
+                    message: '未知错误'
+                  })
+                }
+              } else {
+                this.$message({
+                  type: 'error',
+                  message: '未知错误'
+                })
+              }
+            })
+            .catch(e => {
+              console.log(e)
+              this.$message({
+                type: 'error',
+                message: '未知错误'
+              })
+            })
+          } else { // 新增图书
+            addOneBook(payload) // ajax
+            .then(res => {
+              if (res && res.data) {
+                if (res.data.respCode === '000') {
+                  // 新增成功
+                  this.$message({
+                    type: 'success',
+                    message: '新增成功!'
+                  })
+                  this.$router.push('/admin/dashboard')
+                } else if (res.data.respCode === '001') {
+                  this.$message({
+                    type: 'error',
+                    message: '未找到相关记录'
+                  })
+                } else if (res.data.respCode === '999') {
+                  this.$message({
+                    type: 'error',
+                    message: '未知错误'
+                  })
+                }
+              } else {
+                this.$message({
+                  type: 'error',
+                  message: '未知错误'
+                })
+              }
+            })
+            .catch(e => {
+              console.log(e)
+              this.$message({
+                type: 'error',
+                message: '未知错误'
+              })
+            })
+          }
+        }).catch(() => {
+          this.$notify.info({
+            title: '取消操作',
+            message: ''
+          })
+        })
+      }
+    },
+    validateForm () {
+      if (!(this.name && this.author && this.location && this.category1 && this.firstId && this.secondId)) {
+        this.$notify.error({
+          title: '错误',
+          message: '请完善填写信息'
+        })
+        return false
+      }
+      return true
     }
   }
 }
@@ -120,7 +241,21 @@ export default {
       margin: 0 auto 30px;
       span{
         display: inline-block;
-        width: 80px;
+        width: 100px;
+        &:before{
+          content: "*";
+          display: inline-block;
+          margin: 0 5px;
+          visibility: hidden;
+        }
+        &.require:before{
+          color: red;
+          visibility: visible;
+        }
+      }
+      .confirm-btn{
+        display: block
+        margin: 70px auto;
       }
     }
     .detail-input{

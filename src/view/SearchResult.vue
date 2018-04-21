@@ -89,7 +89,10 @@ export default {
     // 检测是否有admin权限
     const ck = cookie.get('library_admin')
     const cf = cookie.get('library_flag')
-    if (ck && cf === password.cookieFlag && this.$route.path === '/admin/dashboard') this.isAdmin = true
+    if (ck && cf === password.cookieFlag &&
+    (this.$route.path === '/admin/dashboard' || this.$route.path === '/admin/dashboard/')) {
+      this.isAdmin = true
+    }
 
     this.throttleFn = throttle(this.initSearch.bind(this), 500, 2000)
   },
