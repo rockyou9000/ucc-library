@@ -35,10 +35,10 @@
       </el-select>
     </div>
     <div class="book-line">
-      <span class="require">主编号 : </span><el-input class="detail-input" v-model="firstId" ></el-input>
+      <span>主编号 : </span><el-input class="detail-input" v-model="firstId" ></el-input>
     </div>
     <div class="book-line">
-      <span class="require">单本编号 : </span><el-input class="detail-input" v-model="secondId" ></el-input>
+      <span>单本编号 : </span><el-input class="detail-input" v-model="secondId" ></el-input>
     </div>
     <div class="book-line">
       <el-button type="primary" class="confirm-btn" @click="handleClick">{{isEdit?'确认修改':'确认新增'}}</el-button>
@@ -124,15 +124,19 @@ export default {
     handleClick () {
       if (this.validateForm()) {
         const payload = {
-          name: this.name.trim(),
-          author: this.author.trim(),
-          category1: this.category1.trim(),
-          location: this.location.trim(),
-          firstId: this.firstId.trim(),
-          secondId: this.secondId.trim()
+          name: this.name.trim(), // 姓名
+          author: this.author.trim(), // 作者
+          category1: this.category1.trim(), // 分类
+          location: this.location.trim() // 所在教会
         }
         if (this.publisher) {
-          payload.publisher = this.publisher.trim()
+          payload.publisher = this.publisher.trim() // 出版社
+        }
+        if (this.firstId) {
+          payload.firstId = this.firstId.trim() // 主编号
+        }
+        if (this.secondId) {
+          payload.secondId = this.secondId.trim() // 单本编号
         }
 
         this.$confirm('确认图书信息正确么? ', '提示', {
@@ -223,7 +227,7 @@ export default {
       }
     },
     validateForm () {
-      if (!(this.name && this.author && this.location && this.category1 && this.firstId && this.secondId)) {
+      if (!(this.name && this.author && this.location && this.category1)) {
         this.$notify.error({
           title: '错误',
           message: '请完善填写信息'

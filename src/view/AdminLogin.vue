@@ -37,7 +37,7 @@ export default {
           if (password[i] === md5(this.password)) {
             cookie.set('library_admin', i, 1)
             cookie.set('library_flag', password.cookieFlag, 1)
-            this.$router.push({path: '/admin/index'})
+            // this.$router.push('/admin/index')
           }
         }
       }

@@ -14,7 +14,7 @@ export const cookie = {
     days = days !== undefined ? days : 365;
     var exp = new Date();
     exp.setTime(exp.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + "; path=/; domain=.bilibili.com";
+    document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + "; path=/; ";
   },
   delete: function (name) {
     this.set(name, '', -1);
