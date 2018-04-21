@@ -1,6 +1,9 @@
 <template>
   <div class="book-detail-wrap">
     <div class="book-line">
+      <h1>{{isEdit?'编辑图书':'新增图书'}}</h1>
+    </div>
+    <div class="book-line">
       <span class="require">书名 : </span><el-input class="detail-input" v-model="name" ></el-input>
     </div>
     <div class="book-line">
@@ -114,7 +117,7 @@ export default {
     if (id) {
       this.isEdit = true
       this.bookId = id
-      // 获取图书详情
+      // 获取图书详情(暂缺接口)
     }
   },
   methods: {
@@ -239,6 +242,12 @@ export default {
     .book-line{
       width: 300px;
       margin: 0 auto 30px;
+      h1{
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 50px;
+      }
       span{
         display: inline-block;
         width: 100px;
