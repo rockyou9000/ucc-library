@@ -1,51 +1,41 @@
 <template>
- <el-container class="admin-wrap">
-    <el-header>
-      <el-menu :default-active="index" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-        <el-menu-item index="">图书控制台</el-menu-item>
-        <el-menu-item index="add">录入图书</el-menu-item>
-      </el-menu>
-    </el-header>
-    <el-main class="main-content">
-      <router-view></router-view>
-    </el-main>
-  </el-container>
+  <div class="admin-index">
+    <h1>欢迎进入图书管理页面</h1>
+    <el-button class="index-btn" @click="addBook" type="success">录入图书</el-button>
+    <el-button class="index-btn"  @click="editBook"  type="primary">图书编辑</el-button>
+  </div>
 </template>
 
 <script type="text/babel">
-import { cookie } from '../utils/util'
-import password from '../utils/password.json'
 export default {
-  name: 'AdminIndex',
-  created () {
-    const ck = cookie.get('library_admin')
-    const cf = cookie.get('library_flag')
-    if (!ck || cf !== password.cookieFlag) { // 无权限跳转主页
-      this.$router.push({path: '/'})
-    }
-  },
+  name: '',
   data () {
     return {
-      index: ''
+
     }
   },
   methods: {
-    handleSelect (e) {
-      this.$router.push({path: `/admin/${e}`})
+    addBook () {
+      this.$router.push('/admin/add')
+    },
+    editBook () {
+      this.$router.push('/admin/dashboard')
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-  .admin-wrap {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-  .main-content{
-    min-height: 300px;
+  .admin-index{
+    height: 600px;
+    background: url('../assets/image/bg-timg.jpeg') 0 0 no-repeat;
+    background-size: cover;
+    text-align: center;
+    h1{
+      font-size: 40px;
+      color: #fff;
+      padding: 180px 0 120px;
+    }
   }
 </style>
+

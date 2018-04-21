@@ -1,5 +1,4 @@
 import axios from 'axios'
-import qs from 'qs'
 import originJsonp from 'jsonp'
 import { Loading } from 'element-ui'
 
@@ -13,13 +12,12 @@ let loadingInstance = ''
 // axios 全局请求拦截器
 axios.interceptors.request.use(
   config => {
-    // post提交方式采用urlencode编码
+    // post提交方式采用application/json编码
     if (config.method === 'post' && config.data && config.data.constructor !== FormData) {
-      // 设置body数据编码方式为urlencode
-      config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-      config.data = qs.stringify(config.data)
+      // 设置body数据编码方式为application/json
+      config.headers['Content-Type'] = 'application/json'
     }
-    loadingInstance = Loading.service({ fullscreen: true, background: 'rgba(0, 0, 0, 0.2)' })
+    loadingInstance = Loading.service({ fullscreen: true, background: 'rgba(0, 0, 0, 0.1)' })
     return config
   },
   function (error) {
@@ -60,7 +58,7 @@ export default {
     return axios({
       method: 'post',
       url: baseURL + url,
-      data: qs.stringify(data)
+      data: JSON.stringify(data)
       // withCredentials: true, // 跨域携带cookie
     })
   },

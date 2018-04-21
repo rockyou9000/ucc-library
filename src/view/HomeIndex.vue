@@ -1,5 +1,5 @@
 <template>
-  <div class="home-wrap">
+  <div class="home-wrap" @keydown.enter="handleSearch">
     <el-container>
       <el-header>
         <CommonHeader index="home" />
@@ -45,21 +45,26 @@ export default {
       }, {
         value: 'publisher',
         label: '出版社'
-      }, {
-        value: 'categories',
-        label: '分类'
-      }, {
-        value: 'locations',
-        label: '所属教会'
-      }]
+      }
+      // {
+      //   value: 'categories',
+      //   label: '分类'
+      // },
+      // {
+      //   value: 'locations',
+      //   label: '所属教会'
+      // }
+      ]
     }
   },
   methods: {
     handleSearch () {
+      const input = encodeURIComponent(this.input)
+      const value = encodeURIComponent(this.value)
       if (this.input.trim() === '') {
         this.$router.push({path: '/result'})
       } else {
-        this.$router.push({path: `/result/${this.value}/${this.input}`})
+        this.$router.push({path: `/result/${value}/${input}`})
       }
     }
   }

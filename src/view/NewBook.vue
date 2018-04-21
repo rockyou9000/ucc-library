@@ -3,7 +3,7 @@
     <el-header>
       <CommonHeader index="new" />
     </el-header>
-    <h1>新书推荐</h1>
+    <h1 class="developing">敬请期待...</h1>
   </div>
 </template>
 
@@ -23,5 +23,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
+  .developing{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
 </style>

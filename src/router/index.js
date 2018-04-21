@@ -6,9 +6,11 @@ import SearchResult from 'view/SearchResult'
 import NewBook from 'view/NewBook'
 
 import AdminLogin from 'view/AdminLogin'
+import AdminEntrance from 'view/AdminEntrance'
 import AdminIndex from 'view/AdminIndex'
+import AdminEdit from 'view/AdminEdit'
 
-import BookDetail from 'components/BookDetail'
+import BookDetail from 'view/BookDetail'
 
 Vue.use(Router)
 
@@ -43,14 +45,22 @@ export default new Router({
     {
       path: '/admin',
       name: 'admin',
-      component: AdminIndex,
+      component: AdminEntrance,
       children: [
         {
+          path: 'index',
+          component: AdminIndex
+        },
+        {
           path: 'dashboard',
-          component: SearchResult
+          component: AdminEdit
         },
         {
           path: 'add',
+          component: BookDetail
+        },
+        {
+          path: 'add/:id',
           component: BookDetail
         }
       ]
