@@ -68,6 +68,17 @@ export const editOneBook = (payload) => {
 }
 
 /**
+ * 查看图书详情
+ * @param {String} id  图书唯一ID
+ */
+export const getBookDetail = (id) => {
+  return fetch.post(
+    '/book/detail',
+    {id}
+  )
+}
+
+/**
  * 测试接口 jsonp
  */
 export const biliNav = () => {

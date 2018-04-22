@@ -47,7 +47,7 @@
 </template>
 
 <script type="text/babel">
-import {addOneBook, editOneBook} from '../fetch/api'
+import {addOneBook, editOneBook, getBookDetail} from '../fetch/api'
 
 export default {
   name: 'BookDetail',
@@ -117,7 +117,20 @@ export default {
     if (id) {
       this.isEdit = true
       this.bookId = id
-      // 获取图书详情(暂缺接口)
+      // 获取图书详情
+      getBookDetail(id)
+      .then((res) => {
+        if (res && res.data && res.data.respCode === '000') {
+          const data = res.data
+          this.name = data.name
+          this.author = data.author
+          this.publisher = data.publisher
+          this.category1 = data.category1
+          this.location = data.location
+          this.firstId = data.firstId
+          this.secondId = data.secondId
+        }
+      })
     }
   },
   methods: {
